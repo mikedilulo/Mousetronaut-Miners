@@ -1,9 +1,9 @@
 let cheeseCount = 0;
 
-const cheeseResourceGenerator = document.getElementById('cheeseResource');
-const cheeseGenerated = document.querySelector('.cheese-count');
+const cheeseResourceGeneratorImage = document.getElementById('cheeseResource');
+const cheeseGeneratedFromClicks = document.querySelector('.cheese-count');
 
-cheeseResourceGenerator.addEventListener('click', () => {
+cheeseResourceGeneratorImage.addEventListener('click', () => {
     cheeseCount++
-    cheeseGenerated.innerText = cheeseCount;
+    cheeseGeneratedFromClicks.innerText = cheeseCount;
 }) 
