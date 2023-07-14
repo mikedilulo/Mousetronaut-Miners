@@ -8,21 +8,25 @@ const upgrades = {
     cheeseKnives : {
         purchasePrice: 3,
         countModifier: 2,
+        activated: false
     },
 
     cheeseCarts : {
         purchasePrice: 5,
         countModifier: 5,
+        activated: false
     },
 
     mousetronauts: {
         purchasePrice: 7,
-        countModifier: 10,
+        countModifier: 8,
+        activated: false
     },
 
     cheeseGraters : {
         purchasePrice: 10,
-        countModifier: 25,
+        countModifier: 12,
+        activated: false
     }
 }
 
@@ -39,24 +43,40 @@ const graterCount = document.querySelector('.graters-count');
 const allResourceUpgradeButtons = document.querySelectorAll('button');
 const upgradeContainers = document.querySelectorAll('.upgrade-container')
 
-for(resource of allResourceUpgradeButtons) {
-    resource.disabled = true;
+for(resource of upgradeContainers) {
+    resource.classList.add('upgrade-display')
 }
 
 cheeseResourceGeneratorImage.addEventListener('click', () => {
     cheeseCount++
     cheeseGeneratedFromClick.innerText = cheeseCount;
+
     if(cheeseCount >= upgrades.cheeseKnives.purchasePrice) {
-        cheeseKnifeUpgradeButton.disabled = false;
+        upgradeContainers[0].classList.remove('upgrade-display')
+        if(cheeseCount >= upgrades.cheeseKnives.purchasePrice) {
+            cheeseKnifeUpgradeButton.disabled = false;
+        }
     }
+
     if(cheeseCount >= upgrades.cheeseCarts.purchasePrice) {
-        cheeseCartUpgradeButton.disabled = false;
+        upgradeContainers[1].classList.remove('upgrade-display')
+        if(cheeseCount >= upgrades.cheeseCarts.purchasePrice) {
+            cheeseCartUpgradeButton.disabled = false;
+        }
     }
-    if(cheeseCount >= upgrades.mousetronauts.purchasePrice) {
-        cheeseMousetronautUpgradeButton.disabled = false;
+
+    if(cheeseCount >=  upgrades.mousetronauts.purchasePrice) {
+        upgradeContainers[2].classList.remove('upgrade-display')
+        if(cheeseCount >= upgrades.mousetronauts.purchasePrice) {
+            cheeseMousetronautUpgradeButton.disabled = false;
+        }
     }
+
     if(cheeseCount >= upgrades.cheeseGraters.purchasePrice) {
-        cheeseGraterUpgradeButton.disabled = false;
+        upgradeContainers[3].classList.remove('upgrade-display')
+        if(cheeseCount >= upgrades.cheeseGraters.purchasePrice) {
+            cheeseGraterUpgradeButton.disabled = false;
+        }
     }
 })
 
