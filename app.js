@@ -3,29 +3,31 @@ let knivesCount = 0;
 let cartsCount = 0;
 let mousetronautsCount = 0;
 let gratersCount = 0;
+let upgradeAbilities = [];
+let abilityBonus = 0;
 
 const upgrades = {
     cheeseKnives : {
-        purchasePrice: 3,
-        countModifier: 2,
+        purchasePrice: 2,
+        countModifier: 3,
         activated: false
     },
 
     cheeseCarts : {
         purchasePrice: 5,
-        countModifier: 5,
+        countModifier: 8,
         activated: false
     },
 
     mousetronauts: {
         purchasePrice: 7,
-        countModifier: 8,
+        countModifier: 12,
         activated: false
     },
 
     cheeseGraters : {
         purchasePrice: 10,
-        countModifier: 12,
+        countModifier: 15,
         activated: false
     }
 }
@@ -48,8 +50,8 @@ for(resource of upgradeContainers) {
 }
 
 cheeseResourceGeneratorImage.addEventListener('click', () => {
-    cheeseCount++
-    cheeseGeneratedFromClick.innerText = cheeseCount;
+    cheeseCount++;
+    cheeseGeneratedFromClick.innerText = cheeseCount += abilityBonus;
 
     if(cheeseCount >= upgrades.cheeseKnives.purchasePrice) {
         upgradeContainers[0].classList.remove('upgrade-display')
@@ -78,6 +80,7 @@ cheeseResourceGeneratorImage.addEventListener('click', () => {
             cheeseGraterUpgradeButton.disabled = false;
         }
     }
+
 })
 
 cheeseKnifeUpgradeButton.addEventListener('click', () => {
@@ -87,6 +90,7 @@ cheeseKnifeUpgradeButton.addEventListener('click', () => {
     const knifeIconElement = `<i class="fa-solid fa-pen-nib" style='margin-right: 5px'></i>`
     knifeCount.innerHTML = knifeIconElement.repeat(knivesCount);
     purchaseUpgrade();
+    knifeAbilityEnhancement();
 })
 
 cheeseCartUpgradeButton.addEventListener('click', () => {
@@ -96,6 +100,7 @@ cheeseCartUpgradeButton.addEventListener('click', () => {
     const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
     cartCount.innerHTML = cartIconElement.repeat(cartsCount)
     purchaseUpgrade();
+    cartAbilityEnhancement();
 })
 
 cheeseMousetronautUpgradeButton.addEventListener('click', () => {
@@ -105,6 +110,7 @@ cheeseMousetronautUpgradeButton.addEventListener('click', () => {
     const mousetronautIconElement = `<i class="fa-solid fa-house-user" style='margin-right: 5px'></i>`
     mousetronautCount.innerHTML = mousetronautIconElement.repeat(mousetronautsCount)
     purchaseUpgrade();
+    mousetronautAbilityEnhancement();
 })
 
 cheeseGraterUpgradeButton.addEventListener('click', () => {
@@ -114,23 +120,68 @@ cheeseGraterUpgradeButton.addEventListener('click', () => {
     const graterIconElement = `<i class="fa-solid fa-torii-gate" style='margin-right: 5px'></i>`
     graterCount.innerHTML = graterIconElement.repeat(gratersCount)
     purchaseUpgrade();
+    graterAbilityEnhancement();
 })
 
 function purchaseUpgrade() {
     if(cheeseKnifeUpgradeButton && cheeseCount < upgrades.cheeseKnives.purchasePrice) {
-        cheeseCount - upgrades.cheeseKnives.purchasePrice;
         cheeseKnifeUpgradeButton.disabled = true;
+        upgrades.cheeseKnives.activated = true;
     }
+
     if(cheeseCartUpgradeButton && cheeseCount < upgrades.cheeseCarts.purchasePrice) {
-        cheeseCount - upgrades.cheeseCarts.purchasePrice;
         cheeseCartUpgradeButton.disabled = true;
+        upgrades.cheeseCarts.activated = true;
     }
+
     if(cheeseMousetronautUpgradeButton && cheeseCount < upgrades.mousetronauts.purchasePrice) {
-        cheeseCount - upgrades.mousetronauts.purchasePrice;
         cheeseMousetronautUpgradeButton.disabled = true;
+        upgrades.mousetronauts.activated = true;
     }
+
     if(cheeseGraterUpgradeButton && cheeseCount < upgrades.cheeseGraters.purchasePrice) {
-        cheeseCount - upgrades.cheeseGraters.purchasePrice;
         cheeseGraterUpgradeButton.disabled = true;
+        upgrades.cheeseGraters.activated = true;
     }
+}
+
+function knifeAbilityEnhancement() {
+    if(upgrades.cheeseKnives.activated) {
+        cheeseCount - upgrades.cheeseKnives.purchasePrice;
+        upgradeAbilities.push(upgrades.cheeseKnives.countModifier);
+        console.log(upgradeAbilities)
+        calculateBonus();
+    }
+}
+
+function cartAbilityEnhancement() {
+    if(upgrades.cheeseCarts.activated) {
+        cheeseCount - upgrades.cheeseCarts.purchasePrice;
+        upgradeAbilities.push(upgrades.cheeseCarts.countModifier);
+        console.log(upgradeAbilities)
+        calculateBonus();
+    }
+}
+
+function mousetronautAbilityEnhancement() {
+    if(upgrades.mousetronauts.activated) {
+        cheeseCount - upgrades.mousetronauts.purchasePrice;
+        upgradeAbilities.push(upgrades.mousetronauts.countModifier);
+        console.log(upgradeAbilities)
+        calculateBonus();
+    }
+}
+
+function graterAbilityEnhancement() {
+    if(upgrades.cheeseGraters.activated) {
+        cheeseCount - upgrades.cheeseGraters.purchasePrice;
+        upgradeAbilities.push(upgrades.cheeseGraters.countModifier);
+        console.log(upgradeAbilities)
+        calculateBonus();
+    }
+}
+
+function calculateBonus() {
+    abilityBonus = upgradeAbilities.reduce((total, accumulator) => total + accumulator)
+    return abilityBonus;
 }
