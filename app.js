@@ -89,6 +89,7 @@ cheeseKnifeUpgradeButton.addEventListener('click', () => {
     cheeseGeneratedFromClick.innerText = upgradeKnifeResource;
     const knifeIconElement = `<i class="fa-solid fa-pen-nib" style='margin-right: 5px'></i>`
     knifeCount.innerHTML = knifeIconElement.repeat(knivesCount);
+    upgrades.cheeseKnives.purchasePrice = upgrades.cheeseKnives.purchasePrice * 2;
     purchaseUpgrade();
     knifeAbilityEnhancement();
 })
@@ -99,6 +100,7 @@ cheeseCartUpgradeButton.addEventListener('click', () => {
     cheeseGeneratedFromClick.innerText = upgradeCartResource;
     const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
     cartCount.innerHTML = cartIconElement.repeat(cartsCount)
+    upgrades.cheeseCarts.purchasePrice = upgrades.cheeseCarts.purchasePrice * 2;
     purchaseUpgrade();
     cartAbilityEnhancement();
 })
@@ -109,6 +111,7 @@ cheeseMousetronautUpgradeButton.addEventListener('click', () => {
     cheeseGeneratedFromClick.innerText = upgradeMousetronautResource;
     const mousetronautIconElement = `<i class="fa-solid fa-house-user" style='margin-right: 5px'></i>`
     mousetronautCount.innerHTML = mousetronautIconElement.repeat(mousetronautsCount)
+    upgrades.mousetronauts.purchasePrice = upgrades.mousetronauts.purchasePrice * 2;
     purchaseUpgrade();
     mousetronautAbilityEnhancement();
 })
@@ -119,6 +122,7 @@ cheeseGraterUpgradeButton.addEventListener('click', () => {
     cheeseGeneratedFromClick.innerText = upgradeGraterResource;
     const graterIconElement = `<i class="fa-solid fa-torii-gate" style='margin-right: 5px'></i>`
     graterCount.innerHTML = graterIconElement.repeat(gratersCount)
+    upgrades.cheeseGraters.purchasePrice = upgrades.cheeseGraters.purchasePrice * 2;
     purchaseUpgrade();
     graterAbilityEnhancement();
 })
