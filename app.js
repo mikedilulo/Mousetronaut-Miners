@@ -82,33 +82,37 @@ cheeseResourceGeneratorImage.addEventListener('click', () => {
 
 cheeseKnifeUpgradeButton.addEventListener('click', () => {
     knivesCount++;
-    knifeCount.innerText = knivesCount;
     let upgradeKnifeResource = cheeseCount -= upgrades.cheeseKnives.purchasePrice
     cheeseGeneratedFromClick.innerText = upgradeKnifeResource;
+    const knifeIconElement = `<i class="fa-solid fa-pen-nib" style='margin-right: 5px'></i>`
+    knifeCount.innerHTML = knifeIconElement.repeat(knivesCount);
     purchaseUpgrade();
 })
 
 cheeseCartUpgradeButton.addEventListener('click', () => {
     cartsCount++;
-    cartCount.innerText = cartsCount;
     let upgradeCartResource = cheeseCount -= upgrades.cheeseCarts.purchasePrice
-    cheeseGeneratedFromClick.innerText = upgradeCartResource; 
+    cheeseGeneratedFromClick.innerText = upgradeCartResource;
+    const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
+    cartCount.innerHTML = cartIconElement.repeat(cartsCount)
     purchaseUpgrade();
 })
 
 cheeseMousetronautUpgradeButton.addEventListener('click', () => {
     mousetronautsCount++;
-    mousetronautCount.innerText = mousetronautsCount;
     let upgradeMousetronautResource = cheeseCount -= upgrades.mousetronauts.purchasePrice
     cheeseGeneratedFromClick.innerText = upgradeMousetronautResource;
+    const mousetronautIconElement = `<i class="fa-solid fa-house-user" style='margin-right: 5px'></i>`
+    mousetronautCount.innerHTML = mousetronautIconElement.repeat(mousetronautsCount)
     purchaseUpgrade();
 })
 
 cheeseGraterUpgradeButton.addEventListener('click', () => {
     gratersCount++
-    graterCount.innerText = gratersCount;
     let upgradeGraterResource = cheeseCount -= upgrades.cheeseGraters.purchasePrice
     cheeseGeneratedFromClick.innerText = upgradeGraterResource;
+    const graterIconElement = `<i class="fa-solid fa-torii-gate" style='margin-right: 5px'></i>`
+    graterCount.innerHTML = graterIconElement.repeat(gratersCount)
     purchaseUpgrade();
 })
 
