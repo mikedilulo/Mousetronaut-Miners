@@ -64,10 +64,9 @@ for(resource of upgradeContainers) {
 }
 
 cheeseResourceGeneratorImage.addEventListener('click', () => {
-    cheeseCount++;
-    totalCheeseAbilityBonus = cheeseCount += (knifeAbilityBonus + cartAbilityBonus + mousetronautAbilityBonus + graterAbilityBonus);
-    cheeseGeneratedFromClick.innerText = totalCheeseAbilityBonus;
-    calculatedTotalAbility.innerText = totalCheeseAbilityModifiers;
+    totalCheeseAbilityBonus = cheeseCount++ + (knifeAbilityBonus + cartAbilityBonus + mousetronautAbilityBonus + graterAbilityBonus);
+    cheeseGeneratedFromClick.innerText = cheeseCount += totalCheeseAbilityModifiers;
+    
 
     if(cheeseCount >= upgrades.cheeseKnives.purchasePrice) {
         upgradeContainers[0].classList.remove('upgrade-display')
@@ -111,15 +110,10 @@ cheeseKnifeUpgradeButton.addEventListener('click', () => {
 })
 
 cheeseCartUpgradeButton.addEventListener('click', () => {
-    cartsCount++;
-    let upgradeCartResource = cheeseCount -= upgrades.cheeseCarts.purchasePrice
-    cheeseGeneratedFromClick.innerText = upgradeCartResource;
-    const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
-    cartCount.innerHTML = cartIconElement.repeat(cartsCount)
-    upgrades.cheeseCarts.purchasePrice = upgrades.cheeseCarts.purchasePrice * 2;
-    purchaseUpgrade();
-    cartAbilityEnhancement();
+    setInterval(cartAutomaticUpgrade, 3000);
 })
+
+haltAutomaticUpgrade();
 
 cheeseMousetronautUpgradeButton.addEventListener('click', () => {
     mousetronautsCount++;
@@ -164,6 +158,7 @@ function purchaseUpgrade() {
         upgrades.cheeseGraters.activated = true;
     }
 }
+
 
 function knifeAbilityEnhancement() {
     if(upgrades.cheeseKnives.activated) {
@@ -233,4 +228,21 @@ function calculateTotalCheeseBonus() {
     totalCheeseAbilityModifiers = totalCollectionAbilities.reduce((total, accumulator) => total + accumulator)
     calculatedTotalAbility.innerText = totalCheeseAbilityModifiers;
     return totalCheeseAbilityModifiers;
+}
+
+function cartAutomaticUpgrade() {
+    if(cheeseCount >= upgrades.cheeseCarts.purchasePrice) {
+        let upgradeCartResource = cheeseCount -= upgrades.cheeseCarts.purchasePrice
+        cheeseGeneratedFromClick.innerText = upgradeCartResource;
+        cartsCount++;
+        const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
+        cartCount.innerHTML = cartIconElement.repeat(cartsCount)
+        upgrades.cheeseCarts.purchasePrice = upgrades.cheeseCarts.purchasePrice * 2;
+        purchaseUpgrade();
+        cartAbilityEnhancement();
+    }
+}
+
+function haltAutomaticUpgrade() {
+    clearInterval(cartAutomaticUpgrade());
 }
