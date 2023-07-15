@@ -3,8 +3,17 @@ let knivesCount = 0;
 let cartsCount = 0;
 let mousetronautsCount = 0;
 let gratersCount = 0;
-let upgradeAbilities = [];
-let abilityBonus = 0;
+let knifeCollectionAbilities = [];
+let cartCollectionAbilities = [];
+let mousetronautCollectionAbilities = [];
+let graterCollectionAbilities = [];
+let totalCollectionAbilities = [];
+let knifeAbilityBonus = 0;
+let cartAbilityBonus = 0;
+let mousetronautAbilityBonus = 0;
+let graterAbilityBonus = 0;
+let totalCheeseAbilityBonus = 0;
+let totalCheeseAbilityModifiers = 0;
 
 const upgrades = {
     cheeseKnives : {
@@ -44,6 +53,11 @@ const mousetronautCount = document.querySelector('.mousetronauts-count');
 const graterCount = document.querySelector('.graters-count');
 const allResourceUpgradeButtons = document.querySelectorAll('button');
 const upgradeContainers = document.querySelectorAll('.upgrade-container')
+const calculatedKnifeAbility = document.querySelector('.knife-ability-bonus-modifier')
+const calculatedCartAbility = document.querySelector('.cart-ability-bonus-modifier')
+const calculatedMousetronautAbility = document.querySelector('.mousetronaut-ability-bonus-modifier')
+const calculatedGraterAbility = document.querySelector('.grater-ability-bonus-modifier')
+let calculatedTotalAbility = document.querySelector('.total-ability-bonus-modifier')
 
 for(resource of upgradeContainers) {
     resource.classList.add('upgrade-display')
@@ -51,7 +65,9 @@ for(resource of upgradeContainers) {
 
 cheeseResourceGeneratorImage.addEventListener('click', () => {
     cheeseCount++;
-    cheeseGeneratedFromClick.innerText = cheeseCount += abilityBonus;
+    totalCheeseAbilityBonus = cheeseCount += (knifeAbilityBonus + cartAbilityBonus + mousetronautAbilityBonus + graterAbilityBonus);
+    cheeseGeneratedFromClick.innerText = totalCheeseAbilityBonus;
+    calculatedTotalAbility.innerText = totalCheeseAbilityModifiers;
 
     if(cheeseCount >= upgrades.cheeseKnives.purchasePrice) {
         upgradeContainers[0].classList.remove('upgrade-display')
@@ -152,40 +168,69 @@ function purchaseUpgrade() {
 function knifeAbilityEnhancement() {
     if(upgrades.cheeseKnives.activated) {
         cheeseCount - upgrades.cheeseKnives.purchasePrice;
-        upgradeAbilities.push(upgrades.cheeseKnives.countModifier);
-        console.log(upgradeAbilities)
-        calculateBonus();
+        knifeCollectionAbilities.push(upgrades.cheeseKnives.countModifier);
+        calculateKnifeBonus();
+        calculateTotalCheeseBonus();
     }
 }
 
 function cartAbilityEnhancement() {
     if(upgrades.cheeseCarts.activated) {
         cheeseCount - upgrades.cheeseCarts.purchasePrice;
-        upgradeAbilities.push(upgrades.cheeseCarts.countModifier);
-        console.log(upgradeAbilities)
-        calculateBonus();
+        cartCollectionAbilities.push(upgrades.cheeseCarts.countModifier);
+        calculateCartBonus();
+        calculateTotalCheeseBonus();
     }
 }
 
 function mousetronautAbilityEnhancement() {
     if(upgrades.mousetronauts.activated) {
         cheeseCount - upgrades.mousetronauts.purchasePrice;
-        upgradeAbilities.push(upgrades.mousetronauts.countModifier);
-        console.log(upgradeAbilities)
-        calculateBonus();
+        mousetronautCollectionAbilities.push(upgrades.mousetronauts.countModifier);
+        calculateMousetronautBonus();
+        calculateTotalCheeseBonus();
     }
 }
 
 function graterAbilityEnhancement() {
     if(upgrades.cheeseGraters.activated) {
         cheeseCount - upgrades.cheeseGraters.purchasePrice;
-        upgradeAbilities.push(upgrades.cheeseGraters.countModifier);
-        console.log(upgradeAbilities)
-        calculateBonus();
+        graterCollectionAbilities.push(upgrades.cheeseGraters.countModifier);
+        calculateGratersBonus();
+        calculateTotalCheeseBonus();
     }
 }
 
-function calculateBonus() {
-    abilityBonus = upgradeAbilities.reduce((total, accumulator) => total + accumulator)
-    return abilityBonus;
+function calculateKnifeBonus() {
+    knifeAbilityBonus = knifeCollectionAbilities.reduce((total, accumulator) => total + accumulator)
+    calculatedKnifeAbility.innerText = knifeAbilityBonus;
+    totalCollectionAbilities.push(knifeAbilityBonus);
+    return knifeAbilityBonus;
+}
+
+function calculateCartBonus() {
+    cartAbilityBonus = cartCollectionAbilities.reduce((total, accumulator) => total + accumulator)
+    calculatedCartAbility.innerText = cartAbilityBonus;
+    totalCollectionAbilities.push(cartAbilityBonus);
+    return cartAbilityBonus;
+}
+
+function calculateMousetronautBonus() {
+    mousetronautAbilityBonus = mousetronautCollectionAbilities.reduce((total, accumulator) => total + accumulator)
+    calculatedMousetronautAbility.innerText = mousetronautAbilityBonus;
+    totalCollectionAbilities.push(mousetronautAbilityBonus);
+    return mousetronautAbilityBonus;
+}
+
+function calculateGratersBonus() {
+    graterAbilityBonus = graterCollectionAbilities.reduce((total, accumulator) => total + accumulator)
+    calculatedGraterAbility.innerText = graterAbilityBonus;
+    totalCollectionAbilities.push(graterAbilityBonus);
+    return graterAbilityBonus;
+}
+
+function calculateTotalCheeseBonus() {
+    totalCheeseAbilityModifiers = totalCollectionAbilities.reduce((total, accumulator) => total + accumulator)
+    calculatedTotalAbility.innerText = totalCheeseAbilityModifiers;
+    return totalCheeseAbilityModifiers;
 }
