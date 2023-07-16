@@ -110,10 +110,16 @@ cheeseKnifeUpgradeButton.addEventListener('click', () => {
 })
 
 cheeseCartUpgradeButton.addEventListener('click', () => {
-    setInterval(cartAutomaticUpgrade, 3000);
+        cartsCount++;
+        let upgradeCartResource = cheeseCount -= upgrades.cheeseCarts.purchasePrice
+        cheeseGeneratedFromClick.innerText = upgradeCartResource;
+        const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
+        cartCount.innerHTML = cartIconElement.repeat(cartsCount)
+        upgrades.cheeseCarts.purchasePrice = upgrades.cheeseCarts.purchasePrice * 2;
+        purchaseUpgrade();
+        cartAbilityEnhancement();
 })
 
-haltAutomaticUpgrade();
 
 cheeseMousetronautUpgradeButton.addEventListener('click', () => {
     mousetronautsCount++;
@@ -230,19 +236,23 @@ function calculateTotalCheeseBonus() {
     return totalCheeseAbilityModifiers;
 }
 
-function cartAutomaticUpgrade() {
-    if(cheeseCount >= upgrades.cheeseCarts.purchasePrice) {
-        let upgradeCartResource = cheeseCount -= upgrades.cheeseCarts.purchasePrice
-        cheeseGeneratedFromClick.innerText = upgradeCartResource;
-        cartsCount++;
-        const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
-        cartCount.innerHTML = cartIconElement.repeat(cartsCount)
-        upgrades.cheeseCarts.purchasePrice = upgrades.cheeseCarts.purchasePrice * 2;
-        purchaseUpgrade();
-        cartAbilityEnhancement();
-    }
-}
+// function cartAutomaticUpgrade() {
+//     if(cheeseCount >= upgrades.cheeseCarts.purchasePrice) {
+//         let upgradeCartResource = cheeseCount -= upgrades.cheeseCarts.purchasePrice
+//         cheeseGeneratedFromClick.innerText = upgradeCartResource;
+//         cartsCount++;
+//         const cartIconElement = `<i class="fa-solid fa-cart-shopping" style='margin-right: 5px'></i>`
+//         cartCount.innerHTML = cartIconElement.repeat(cartsCount)
+//         upgrades.cheeseCarts.purchasePrice = upgrades.cheeseCarts.purchasePrice * 2;
+//         purchaseUpgrade();
+//         cartAbilityEnhancement();
+//     }
+// }
 
-function haltAutomaticUpgrade() {
-    clearInterval(cartAutomaticUpgrade());
-}
+// function haltAutomaticUpgrade() {
+//     clearInterval(cartAutomaticUpgrade());
+// }
+
+    // setInterval(cartAutomaticUpgrade, 3000);
+
+// haltAutomaticUpgrade();
