@@ -41,6 +41,22 @@ const upgrades = {
     }
 }
 
+const superUpgrades = {
+    mousetronautCheeseCollectionUpgrade: {
+        purchasePrice: 0,
+        mousetronautBonusAddition: upgrades.mousetronauts.countModifier + 88,
+        activated: false
+    },
+    graterCheeseCollectionUpgrade: {
+        purchasePrice: 0,
+        graterBonusAddition: upgrades.cheeseGraters.countModifier + 185,
+        activated: false
+    }
+}
+
+console.log(superUpgrades.mousetronautCheeseCollectionUpgrade.mousetronautBonusAddition)
+console.log(superUpgrades.graterCheeseCollectionUpgrade.graterBonusAddition)
+
 const cheeseResourceGeneratorImage = document.getElementById('cheeseResource');
 let cheeseGeneratedFromClick = document.querySelector('.cheese-count');
 const cheeseKnifeUpgradeButton = document.querySelector('.cheese-knife-upgrade-btn');
