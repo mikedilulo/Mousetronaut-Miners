@@ -29,8 +29,6 @@ const mousetronautUpgradeButton = document.querySelector('.cheese-mousetronaut-u
 
 disableButtonsAtStart();
 
-
-
 clickToGenerateCheeseResource.addEventListener('click', () => {
 mineCheese();
 });
