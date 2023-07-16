@@ -98,20 +98,27 @@ cheeseResourceGeneratorImage.addEventListener('click', () => {
         }
     }
 
-    if(cheeseCount >=  upgrades.mousetronauts.purchasePrice) {
-        upgradeContainers[2].classList.remove('upgrade-display')
+    if(mousetronautsCount === 0) {
         if(cheeseCount >= upgrades.mousetronauts.purchasePrice) {
-            cheeseMousetronautUpgradeButton.disabled = false;
+            upgradeContainers[2].classList.remove('upgrade-display')
+            if(cheeseCount >= upgrades.mousetronauts.purchasePrice) {
+                cheeseMousetronautUpgradeButton.disabled = false;
+            }
         }
+    } else {
+        cheeseMousetronautUpgradeButton.disabled = true;
     }
 
-    if(cheeseCount >= upgrades.cheeseGraters.purchasePrice) {
-        upgradeContainers[3].classList.remove('upgrade-display')
+    if(gratersCount === 0) {
         if(cheeseCount >= upgrades.cheeseGraters.purchasePrice) {
-            cheeseGraterUpgradeButton.disabled = false;
-        }
+            upgradeContainers[3].classList.remove('upgrade-display')
+            if(cheeseCount >= upgrades.cheeseGraters.purchasePrice) {
+                cheeseGraterUpgradeButton.disabled = false;
+            }
+        } 
+    } else {
+        cheeseGraterUpgradeButton.disabled = true;
     }
-
 })
 
 cheeseKnifeUpgradeButton.addEventListener('click', () => {
@@ -136,13 +143,12 @@ cheeseCartUpgradeButton.addEventListener('click', () => {
         cartAbilityEnhancement();
 })
 
-
 cheeseMousetronautUpgradeButton.addEventListener('click', () => {
     mousetronautsCount++;
     let upgradeMousetronautResource = cheeseCount -= upgrades.mousetronauts.purchasePrice
     cheeseGeneratedFromClick.innerText = upgradeMousetronautResource;
-    const mousetronautIconElement = `<i class="fa-solid fa-house-user" style='margin-right: 5px'></i>`
-    mousetronautCount.innerHTML = mousetronautIconElement.repeat(mousetronautsCount)
+    const mousetronautIconElement = `<span>Upgrade Completed</span>`
+    mousetronautCount.innerHTML = mousetronautIconElement
     upgrades.mousetronauts.purchasePrice = upgrades.mousetronauts.purchasePrice * 2;
     purchaseUpgrade();
     mousetronautAbilityEnhancement();
@@ -152,8 +158,8 @@ cheeseGraterUpgradeButton.addEventListener('click', () => {
     gratersCount++
     let upgradeGraterResource = cheeseCount -= upgrades.cheeseGraters.purchasePrice
     cheeseGeneratedFromClick.innerText = upgradeGraterResource;
-    const graterIconElement = `<i class="fa-solid fa-torii-gate" style='margin-right: 5px'></i>`
-    graterCount.innerHTML = graterIconElement.repeat(gratersCount)
+    const graterIconElement = `<span>Upgrade Completed</span>`
+    graterCount.innerHTML = graterIconElement
     upgrades.cheeseGraters.purchasePrice = upgrades.cheeseGraters.purchasePrice * 2;
     purchaseUpgrade();
     graterAbilityEnhancement();
@@ -207,6 +213,7 @@ function mousetronautAbilityEnhancement() {
         calculateMousetronautBonus();
         calculateTotalCheeseBonus();
     }
+    cheeseMousetronautUpgradeButton.disabled = true;
 }
 
 function graterAbilityEnhancement() {
@@ -216,6 +223,7 @@ function graterAbilityEnhancement() {
         calculateGratersBonus();
         calculateTotalCheeseBonus();
     }
+    cheeseGraterUpgradeButton.disabled = true;
 }
 
 function calculateKnifeBonus() {
