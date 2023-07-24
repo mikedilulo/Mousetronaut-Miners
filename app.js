@@ -65,6 +65,7 @@ function purchaseCheeseKnifeUpgrade() {
     knifeActivated = true;
     cheeseCount = cheeseCount -= knifePurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
+    notEnoughCheeseForClickResources();
     return cheeseCount;
 }
 
@@ -74,6 +75,7 @@ function purchaseCheeseMousetronautUpgrade() {
     mousetronautActivated = true;
     cheeseCount = cheeseCount -= mousetronautPurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
+    notEnoughCheeseForClickResources();
     return cheeseCount;
 }
 
@@ -100,4 +102,10 @@ function isMousetronautActivated() {
         totalCheeseCount.innerHTML = cheeseCount;
     }
     return cheeseCount;
+}
+
+function notEnoughCheeseForClickResources() {
+    if(cheeseCount < knifePurchasePrice) {
+        knifeUpgradeButton.disabled = true;
+    }
 }
