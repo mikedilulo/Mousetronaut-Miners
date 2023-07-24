@@ -76,6 +76,7 @@ function purchaseCheeseMousetronautUpgrade() {
     cheeseCount = cheeseCount -= mousetronautPurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
     notEnoughCheeseForClickResources();
+    setInterval(autoMouseUpgradeModifier, 3000)
     return cheeseCount;
 }
 
@@ -108,4 +109,9 @@ function notEnoughCheeseForClickResources() {
     if(cheeseCount < knifePurchasePrice) {
         knifeUpgradeButton.disabled = true;
     }
+}
+
+function autoMouseUpgradeModifier() {
+    totalCheeseCount.innerHTML = cheeseCount += mousetronautClickModifier;
+    enableButtonsForUpgrades();
 }
