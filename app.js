@@ -50,9 +50,12 @@ const knifeUpgradeButton = document.querySelector('.cheese-knife-upgrade-btn');
 const cartUpgradeButton = document.querySelector('.cheese-cart-upgrade-btn');
 const mousetronautUpgradeButton = document.querySelector('.cheese-mousetronaut-upgrade-btn');
 const graterUpgradeButton = document.querySelector('.cheese-grater-upgrade-btn');
+const maxMouseAutoUpgradeCount = document.querySelector('.mouse-max-upgrade');
+const maxGraterAutoUpgradeCount = document.querySelector('.grater-max-upgrade');
 
 
 disableButtonsAtStart();
+disableMaxUpgradeText();
 
 clickToGenerateCheeseResource.addEventListener('click', () => {
 mineCheese();
@@ -128,6 +131,7 @@ function purchaseCheeseMousetronautUpgrade() {
     totalCheeseCount.innerHTML = cheeseCount;
     notEnoughCheeseForClickResources();
     setInterval(autoMouseUpgradeModifier, 5000)
+    maxMouseAutoUpgradeCount.classList.remove('hide-max-upgrade')
     return cheeseCount;
 }
 
@@ -139,6 +143,7 @@ function purchaseGraterUpgrade() {
     totalCheeseCount.innerHTML = cheeseCount;
     notEnoughCheeseForClickResources();
     setInterval(autoGraterUpgradeModifier, 3000);
+    maxGraterAutoUpgradeCount.classList.remove('hide-max-upgrade')
     return cheeseCount;
 }
 
@@ -206,4 +211,13 @@ function autoMouseUpgradeModifier() {
 function autoGraterUpgradeModifier() {
     totalCheeseCount.innerHTML = cheeseCount += graterAutoModifier;
     enableButtonsForUpgrades();
+}
+
+function disableMaxUpgradeText() {
+    if(mousetronautCount === 0) {
+        maxMouseAutoUpgradeCount.classList.add('hide-max-upgrade');
+    }
+    if(graterCount === 0) {
+        maxGraterAutoUpgradeCount.classList.add('hide-max-upgrade')
+    }
 }
