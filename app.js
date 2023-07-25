@@ -50,11 +50,14 @@ const knifeUpgradeButton = document.querySelector('.cheese-knife-upgrade-btn');
 const cartUpgradeButton = document.querySelector('.cheese-cart-upgrade-btn');
 const mousetronautUpgradeButton = document.querySelector('.cheese-mousetronaut-upgrade-btn');
 const graterUpgradeButton = document.querySelector('.cheese-grater-upgrade-btn');
+let knifeUpgradeCount = document.querySelector('.number-of-knife-resources');
+let cartUpgradeCount = document.querySelector('.number-of-cart-resources');
 const maxMouseAutoUpgradeCount = document.querySelector('.mouse-max-auto-upgrade');
-const maxGraterAutoUpgradeCount = document.querySelector('.grater-max-auto-upgrade')
+const maxGraterAutoUpgradeCount = document.querySelector('.grater-max-auto-upgrade');
 
 disableButtonsAtStart();
-disableMaxUpgradeText();
+disableMaxAutoUpgrades();
+hideIconsPerClickUpgrade();
 
 clickToGenerateCheeseResource.addEventListener('click', () => {
 mineCheese();
@@ -110,6 +113,8 @@ function purchaseCheeseKnifeUpgrade() {
     cheeseCount = cheeseCount -= knifePurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
     notEnoughCheeseForClickResources();
+    notEnoughCheeseForAutoResources();
+    displayNumberOfResources();
     return cheeseCount;
 }
 
@@ -119,6 +124,8 @@ function purchaseCartUpgrade() {
     cheeseCount = cheeseCount -= cartPurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
     notEnoughCheeseForClickResources();
+    notEnoughCheeseForAutoResources();
+    displayNumberOfResources();
     return cheeseCount;
 }
 
@@ -129,8 +136,9 @@ function purchaseCheeseMousetronautUpgrade() {
     cheeseCount = cheeseCount -= mousetronautPurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
     notEnoughCheeseForClickResources();
+    notEnoughCheeseForAutoResources();
     setInterval(autoMouseUpgradeModifier, 5000)
-    maxMouseAutoUpgradeCount.classList.remove('hide-max-upgrade')
+    maxMouseAutoUpgradeCount.classList.remove('hide-upgrade-text-icons')
     maxMouseAutoUpgradeCount.classList.add('max-auto-upgrade')
     return cheeseCount;
 }
@@ -142,8 +150,9 @@ function purchaseGraterUpgrade() {
     cheeseCount = cheeseCount -= graterPurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
     notEnoughCheeseForClickResources();
+    notEnoughCheeseForAutoResources();
     setInterval(autoGraterUpgradeModifier, 3000);
-    maxGraterAutoUpgradeCount.classList.remove('hide-max-upgrade')
+    maxGraterAutoUpgradeCount.classList.remove('hide-upgrade-text-icons')
     maxGraterAutoUpgradeCount.classList.add('max-auto-upgrade')
     return cheeseCount;
 }
@@ -204,6 +213,15 @@ function notEnoughCheeseForClickResources() {
     }
 }
 
+function notEnoughCheeseForAutoResources() {
+    if(cheeseCount < mousetronautPurchasePrice) {
+        mousetronautUpgradeButton.disabled = true;
+    }
+    if(cheeseCount < graterPurchasePrice) {
+        graterUpgradeButton.disabled = true;
+    }
+}
+
 function autoMouseUpgradeModifier() {
     totalCheeseCount.innerHTML = cheeseCount += mousetronautAutoModifier;
     enableButtonsForUpgrades();
@@ -214,11 +232,32 @@ function autoGraterUpgradeModifier() {
     enableButtonsForUpgrades();
 }
 
-function disableMaxUpgradeText() {
+function disableMaxAutoUpgrades() {
     if(mousetronautCount === 0) {
-        maxMouseAutoUpgradeCount.classList.add('hide-max-upgrade');
+        maxMouseAutoUpgradeCount.classList.add('hide-upgrade-text-icons');
     }
     if(graterCount === 0) {
-        maxGraterAutoUpgradeCount.classList.add('hide-max-upgrade');
+        maxGraterAutoUpgradeCount.classList.add('hide-upgrade-text-icons');
+    }
+}
+
+function hideIconsPerClickUpgrade() {
+    if(knifeCount === 0) {
+        knifeUpgradeCount.classList.add('hide-upgrade-text-icons');
+    }
+
+    if(cartCount === 0) {
+        cartUpgradeCount.classList.add('hide-upgrade-text-icons');
+    }
+}
+
+function displayNumberOfResources() {
+    if(knifeCount >= 1) {
+        knifeUpgradeCount.classList.remove('hide-upgrade-text-icons');
+        knifeUpgradeCount.innerHTML = `${'<i class="fa-solid fa-pen-nib"></i>'}`.repeat(knifeCount);
+    }
+    if(cartCount >= 1) {
+        cartUpgradeCount.classList.remove('hide-upgrade-text-icons');
+        cartUpgradeCount.innerHTML = `${'<i class="fa-solid fa-cart-shopping"></i>'}`.repeat(cartCount);
     }
 }
