@@ -2,6 +2,7 @@ let cheeseCount = 0;
 let knifeCount = 0;
 let cartCount = 0;
 let mousetronautCount = 0;
+let graterCount = 0;
 
 const gameUpgrades = {
     knives: {
@@ -38,12 +39,18 @@ let mousetronautPurchasePrice = gameUpgrades.mousetronauts.purchasePrice;
 let mousetronautActivated = gameUpgrades.mousetronauts.activated;
 let mousetronautAutoModifier = gameUpgrades.mousetronauts.autoModifier;
 
+let graterPurchasePrice = gameUpgrades.graters.purchasePrice;
+let graterActivated = gameUpgrades.graters.activated;
+let graterAutoModifier = gameUpgrades.graters.autoModifier;
+
 const totalCheeseCount = document.querySelector('.cheese-count');
 const clickToGenerateCheeseResource = document.getElementById('cheeseResource');
 const allResourceUpgradeButtons = document.querySelectorAll('button');
 const knifeUpgradeButton = document.querySelector('.cheese-knife-upgrade-btn');
-const mousetronautUpgradeButton = document.querySelector('.cheese-mousetronaut-upgrade-btn');
 const cartUpgradeButton = document.querySelector('.cheese-cart-upgrade-btn');
+const mousetronautUpgradeButton = document.querySelector('.cheese-mousetronaut-upgrade-btn');
+const graterUpgradeButton = document.querySelector('.cheese-grater-upgrade-btn');
+
 
 disableButtonsAtStart();
 
@@ -63,8 +70,13 @@ mousetronautUpgradeButton.addEventListener('click', () => {
     purchaseCheeseMousetronautUpgrade();
 })
 
+graterUpgradeButton.addEventListener('click', () => {
+    purchaseGraterUpgrade();
+})
+
 function mineCheese() {
     cheeseCount++;
+    cheeseCount = cheeseCount += (knifeClickModifier * knifeCount) + (cartClickModifier * cartCount) + (mousetronautAutoModifier * mousetronautCount) + (graterAutoModifier * graterCount);
     totalCheeseCount.innerHTML = cheeseCount;
     enableButtonsForUpgrades();
     isKnifeActivated();
@@ -75,6 +87,12 @@ function mineCheese() {
 function mousetronautDeactivated() {
     if(mousetronautCount > 0) {
         mousetronautUpgradeButton.disabled = true;
+    }
+}
+
+function graterDeactivated() {
+    if(graterCount > 0) {
+        graterUpgradeButton.disabled = true;
     }
 }
 
@@ -113,6 +131,17 @@ function purchaseCheeseMousetronautUpgrade() {
     return cheeseCount;
 }
 
+function purchaseGraterUpgrade() {
+    graterCount++;
+    graterDeactivated();
+    graterActivated = true;
+    cheeseCount = cheeseCount -= graterPurchasePrice;
+    totalCheeseCount.innerHTML = cheeseCount;
+    notEnoughCheeseForClickResources();
+    setInterval(autoGraterUpgradeModifier, 3000);
+    return cheeseCount;
+}
+
 function enableButtonsForUpgrades() {
     if(cheeseCount >= knifePurchasePrice) {
         knifeUpgradeButton.disabled = false;
@@ -123,11 +152,22 @@ function enableButtonsForUpgrades() {
     if(cheeseCount >= mousetronautPurchasePrice && mousetronautCount === 0) {
         mousetronautUpgradeButton.disabled = false;
     }
+    if(cheeseCount >= graterPurchasePrice && graterCount === 0) {
+        graterUpgradeButton.disabled = false;
+    }
 }
 
 function isKnifeActivated() {
     if(knifeActivated) {
         cheeseCount = cheeseCount += knifeClickModifier;
+        totalCheeseCount.innerHTML = cheeseCount;
+    }
+    return cheeseCount;
+}
+
+function isCartActivated() {
+    if(cartActivated) {
+        cheeseCount = cheeseCount += cartClickModifier;
         totalCheeseCount.innerHTML = cheeseCount;
     }
     return cheeseCount;
@@ -141,9 +181,9 @@ function isMousetronautActivated() {
     return cheeseCount;
 }
 
-function isCartActivated() {
-    if(cartActivated) {
-        cheeseCount = cheeseCount += cartClickModifier;
+function isGraterActivated() {
+    if(graterActivated) {
+        cheeseCount = cheeseCount += graterAutoModifier;
         totalCheeseCount.innerHTML = cheeseCount;
     }
     return cheeseCount;
@@ -160,5 +200,10 @@ function notEnoughCheeseForClickResources() {
 
 function autoMouseUpgradeModifier() {
     totalCheeseCount.innerHTML = cheeseCount += mousetronautAutoModifier;
+    enableButtonsForUpgrades();
+}
+
+function autoGraterUpgradeModifier() {
+    totalCheeseCount.innerHTML = cheeseCount += graterAutoModifier;
     enableButtonsForUpgrades();
 }
