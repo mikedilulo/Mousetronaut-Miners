@@ -118,7 +118,7 @@ function purchaseCheeseKnifeUpgrade() {
     totalCheeseCount.innerHTML = cheeseCount;
     displayNumberOfResources();
     knifePurchasePrice = knifePurchasePrice *= Math.floor((knifeCount / 2) + 1);
-    knifeClickModifier = (knifeCount * knifeClickModifier);
+    knifeClickModifier = Math.floor(knifeCount * knifeClickModifier / 2.25);
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
     knifeModifierDisplay.innerHTML = (knifeClickModifier * knifeCount) + knifeClickModifier;
@@ -133,7 +133,7 @@ function purchaseCartUpgrade() {
     totalCheeseCount.innerHTML = cheeseCount;
     displayNumberOfResources();
     cartPurchasePrice = cartPurchasePrice *= Math.floor((cartCount / 2) + 1);
-    cartClickModifier = (cartCount * cartClickModifier);
+    cartClickModifier = Math.floor(cartCount * cartClickModifier / 2.25);
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
     cartModifierDisplay.innerHTML = (cartClickModifier * cartCount) + cartClickModifier;
