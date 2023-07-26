@@ -112,10 +112,12 @@ function purchaseCheeseKnifeUpgrade() {
     knifeActivated = true;
     cheeseCount = cheeseCount -= knifePurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
+    displayNumberOfResources();
+    knifePurchasePrice = knifePurchasePrice *= Math.floor((knifeCount / 2) + 1);
+    console.log(knifePurchasePrice)
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
-    displayNumberOfResources();
-    return cheeseCount;
+    return knifePurchasePrice;
 }
 
 function purchaseCartUpgrade() {
@@ -123,9 +125,10 @@ function purchaseCartUpgrade() {
     cartActivated = true;
     cheeseCount = cheeseCount -= cartPurchasePrice;
     totalCheeseCount.innerHTML = cheeseCount;
+    displayNumberOfResources();
+    cartPurchasePrice = cartPurchasePrice *= Math.floor((cartCount / 2) + 1);
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
-    displayNumberOfResources();
     return cheeseCount;
 }
 
