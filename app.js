@@ -122,7 +122,7 @@ function purchaseCheeseKnifeUpgrade() {
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
     knifeModifierDisplay.innerHTML = (knifeClickModifier * knifeCount) + knifeClickModifier;
-    return cheeseCount;
+    return totalForModifications;
 }
 
 
@@ -137,7 +137,7 @@ function purchaseCartUpgrade() {
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
     cartModifierDisplay.innerHTML = (cartClickModifier * cartCount) + cartClickModifier;
-    return cheeseCount;
+    return totalForModifications;
 }
 
 function purchaseCheeseMousetronautUpgrade() {
@@ -151,7 +151,9 @@ function purchaseCheeseMousetronautUpgrade() {
     setInterval(autoMouseUpgradeModifier, 5000)
     maxMouseAutoUpgradeCount.classList.remove('hide-upgrade-text-icons')
     maxMouseAutoUpgradeCount.classList.add('max-auto-upgrade')
-    return cheeseCount;
+    mousetronautAutoModifier = (mousetronautCount * mousetronautAutoModifier);
+    mouseModifierDisplay.innerHTML = (mousetronautAutoModifier * mousetronautCount);
+    return totalForModifications;
 }
 
 function purchaseGraterUpgrade() {
@@ -165,8 +167,12 @@ function purchaseGraterUpgrade() {
     setInterval(autoGraterUpgradeModifier, 3000);
     maxGraterAutoUpgradeCount.classList.remove('hide-upgrade-text-icons')
     maxGraterAutoUpgradeCount.classList.add('max-auto-upgrade')
-    return cheeseCount;
+    graterAutoModifier = (graterCount * graterAutoModifier);
+    graterModifierDisplay.innerHTML = (graterAutoModifier * graterCount);
+    return totalForModifications;
 }
+
+
 
 function enableButtonsForUpgrades() {
     if(cheeseCount >= knifePurchasePrice) {
