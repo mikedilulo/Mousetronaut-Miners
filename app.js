@@ -54,6 +54,10 @@ let knifeUpgradeCount = document.querySelector('.number-of-knife-resources');
 let cartUpgradeCount = document.querySelector('.number-of-cart-resources');
 const maxMouseAutoUpgradeCount = document.querySelector('.mouse-max-auto-upgrade');
 const maxGraterAutoUpgradeCount = document.querySelector('.grater-max-auto-upgrade');
+const knifeModifierDisplay = document.querySelector('.knife-plus-cheese-modifier');
+const cartModifierDisplay = document.querySelector('.cart-plus-cheese-modifier');
+const mouseModifierDisplay = document.querySelector('.mouse-plus-cheese-modifier');
+const graterModifierDisplay = document.querySelector('.grater-plus-cheese-modifier');
 
 disableButtonsAtStart();
 disableMaxAutoUpgrades();
@@ -114,11 +118,13 @@ function purchaseCheeseKnifeUpgrade() {
     totalCheeseCount.innerHTML = cheeseCount;
     displayNumberOfResources();
     knifePurchasePrice = knifePurchasePrice *= Math.floor((knifeCount / 2) + 1);
-    console.log(knifePurchasePrice)
+    knifeClickModifier = (knifeCount * knifeClickModifier);
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
-    return knifePurchasePrice;
+    knifeModifierDisplay.innerHTML = (knifeClickModifier * knifeCount) + knifeClickModifier;
+    return cheeseCount;
 }
+
 
 function purchaseCartUpgrade() {
     cartCount++;
@@ -127,8 +133,10 @@ function purchaseCartUpgrade() {
     totalCheeseCount.innerHTML = cheeseCount;
     displayNumberOfResources();
     cartPurchasePrice = cartPurchasePrice *= Math.floor((cartCount / 2) + 1);
+    cartClickModifier = (cartCount * cartClickModifier);
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
+    cartModifierDisplay.innerHTML = (cartClickModifier * cartCount) + cartClickModifier;
     return cheeseCount;
 }
 
