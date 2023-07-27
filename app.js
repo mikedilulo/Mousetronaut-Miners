@@ -3,6 +3,10 @@ let knifeCount = 0;
 let cartCount = 0;
 let mousetronautCount = 0;
 let graterCount = 0;
+let knifeMultiplier = 0;
+let cartMultiplier = 0;
+let mouseMultiplier = 0;
+let graterMultiplier = 0;
 
 const gameUpgrades = {
     knives: {
@@ -58,6 +62,7 @@ const knifeModifierDisplay = document.querySelector('.knife-plus-cheese-modifier
 const cartModifierDisplay = document.querySelector('.cart-plus-cheese-modifier');
 const mouseModifierDisplay = document.querySelector('.mouse-plus-cheese-modifier');
 const graterModifierDisplay = document.querySelector('.grater-plus-cheese-modifier');
+const totalCheeseMultiplierDisplay = document.querySelector('.cheese-stat-tcm-count')
 
 disableButtonsAtStart();
 disableMaxAutoUpgrades();
@@ -91,6 +96,7 @@ function mineCheese() {
     isKnifeActivated();
     isCartActivated();
     isMousetronautActivated();
+    isGraterActivated();
     if(cheeseCount >= 10000) {
         console.log('its happened')
         getColor();
@@ -129,8 +135,10 @@ function purchaseCheeseKnifeUpgrade() {
     knifeClickModifier = Math.floor(knifeCount * knifeClickModifier / 2.25);
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
-    knifeModifierDisplay.innerHTML = (knifeClickModifier * knifeCount) + knifeClickModifier;
-    return cheeseCount;
+    knifeMultiplier = (knifeClickModifier * knifeCount) + knifeClickModifier;
+    totalCheeseMultiplierDisplay.innerHTML = knifeMultiplier + cartMultiplier + mouseMultiplier + graterMultiplier;
+    changeIconsToUpgradeCount();
+    return knifeMultiplier;
 }
 
 
@@ -144,8 +152,10 @@ function purchaseCartUpgrade() {
     cartClickModifier = Math.floor(cartCount * cartClickModifier / 2.25);
     notEnoughCheeseForClickResources();
     notEnoughCheeseForAutoResources();
-    cartModifierDisplay.innerHTML = (cartClickModifier * cartCount) + cartClickModifier;
-    return cheeseCount;
+    cartMultiplier = (cartClickModifier * cartCount) + cartClickModifier;
+    totalCheeseMultiplierDisplay.innerHTML = knifeMultiplier + cartMultiplier + mouseMultiplier + graterMultiplier;
+    changeIconsToUpgradeCount();
+    return cartMultiplier;
 }
 
 function purchaseCheeseMousetronautUpgrade() {
@@ -160,11 +170,13 @@ function purchaseCheeseMousetronautUpgrade() {
     maxMouseAutoUpgradeCount.classList.remove('hide-upgrade-text-icons')
     maxMouseAutoUpgradeCount.classList.add('max-auto-upgrade')
     mousetronautAutoModifier = (mousetronautCount * mousetronautAutoModifier);
-    mouseModifierDisplay.innerHTML = (mousetronautAutoModifier * mousetronautCount);
-    return cheeseCount;
+    mouseMultiplier = (mousetronautAutoModifier * mousetronautCount);
+    totalCheeseMultiplierDisplay.innerHTML = knifeMultiplier + cartMultiplier + mouseMultiplier + graterMultiplier;
+    return mouseMultiplier;
 }
 
 function purchaseGraterUpgrade() {
+    console.log('clicked')
     graterCount++;
     graterDeactivated();
     graterActivated = true;
@@ -176,8 +188,9 @@ function purchaseGraterUpgrade() {
     maxGraterAutoUpgradeCount.classList.remove('hide-upgrade-text-icons')
     maxGraterAutoUpgradeCount.classList.add('max-auto-upgrade')
     graterAutoModifier = (graterCount * graterAutoModifier);
-    graterModifierDisplay.innerHTML = (graterAutoModifier * graterCount);
-    return cheeseCount;
+    graterMultiplier = (graterAutoModifier * graterCount);
+    totalCheeseMultiplierDisplay.innerHTML = knifeMultiplier + cartMultiplier + mouseMultiplier + graterMultiplier;
+    return graterMultiplier;
 }
 
 
@@ -287,6 +300,14 @@ function displayNumberOfResources() {
     }
 }
 
+function changeIconsToUpgradeCount() {
+    if(knifeCount >= 11) {
+        knifeUpgradeCount.innerHTML = knifeCount;
+    }
+    if(cartCount >= 11) {
+        cartUpgradeCount.innerHTML = cartCount;
+    }
+}
 
 
 // Achievements

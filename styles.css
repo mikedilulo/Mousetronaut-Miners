@@ -6,8 +6,7 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   font-family: 'Poppins';
-  margin: 0;
-  padding: 0;
+  z-index: 0;
 }
 
 .hide-upgrade-text-icons {
@@ -131,6 +130,28 @@ html {
 .inventory-stats-heading {
   color: #FFFFFF;
   margin-bottom: 0px;
+}
+
+.upgrades-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #F5F5F5;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color:rgba(1, 1, 1, .8);
+  color: #FFFFFF;
+  border-radius: 5px;
+  max-width: 25%;
+}
+
+.fa-pen-nib:before {
+  margin-left: 5px;
+}
+
+.fa-cart-shopping:before {
+  margin-left: 5px;
 }
 
 /* Moon Animation */
