@@ -28,6 +28,61 @@ html {
   font-size: 40px;
 }
 
+/* Moon Animation */
+
+.moon-container {
+  display: flex;
+  justify-content: center;
+}
+
+.moon {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background: url(images/moon.jpeg);
+  background-repeat: repeat-x;
+  background-size: cover;
+  animation: moon-rotation 90s linear infinite;
+  box-shadow: inset 60px 0 40px black,
+              inset 160px 0 60px rgba(0, 0, 0, .1),
+              inset -160px 0 60px rgba(248, 248, 213, 0.2);
+}
+
+.moon:before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  /*border: brown 1px solid;*/
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  /* box-shadow: -60px 0 50px black; */
+}
+
+@keyframes moon-rotation {
+  from {background-position: -500px center;}
+  to {background-position: 496px center;}
+}
+
+@media screen and (max-width: 500px) {
+  body {
+      background: radial-gradient(circle at center, rgb(255, 255, 255) 115px, black 130px);
+  }
+
+  .moon {
+      width: 200px;
+      height: 200px;
+  }
+
+  .moon:before {
+      width: 200px;
+      height: 200px;
+      box-shadow: -60px 0 50px black;
+  }    
+}
+
 
 
 /* Achievements */
