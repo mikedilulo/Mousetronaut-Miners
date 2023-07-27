@@ -144,6 +144,7 @@ html {
   color: #FFFFFF;
   border-radius: 5px;
   max-width: 25%;
+  margin-left: 100px;
 }
 
 .fa-pen-nib:before {
@@ -152,6 +153,12 @@ html {
 
 .fa-cart-shopping:before {
   margin-left: 5px;
+}
+
+.cheese-stats-heading-upgrades {
+  color: #FFFFFF;
+  margin-bottom: 0px;
+  margin-left: 100px;
 }
 
 /* Moon Animation */
