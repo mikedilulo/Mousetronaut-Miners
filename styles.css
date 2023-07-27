@@ -5,6 +5,9 @@ html {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: 'Poppins';
+  margin: 0;
+  padding: 0;
 }
 
 .hide-upgrade-text-icons {
@@ -24,15 +27,118 @@ html {
 
 .moon-miner-title-heading {
   color: #FFFFFF;
-  font-family: 'Poppins';
   font-size: 40px;
+}
+
+.cheese-stats-heading {
+  color: #FFFFFF;
+  margin-bottom: 0px;
+}
+
+.cheese-stats-text {
+  color: #FFFFFF;
+  font-size: 12px;
+}
+
+.cheese-stat-container-outer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #F5F5F5;
+  padding-left: 10px;
+  padding-right: 40px;
+  background-color:rgba(1, 1, 1, .8);
+  border-radius: 5px;
+}
+
+.cheese-stat-container-top {
+  display: flex;
+  align-items: center;
+}
+
+.cheese-stat-container-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.cheese-stat-tcm-count {
+  color: #FFFFFF;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.cheese-stat-cps-count {
+  color: #FFFFFF;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.inventory-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #F5F5F5;
+  max-height: 140px;
+  padding-left: 10px;
+  padding-right: 120px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  background-color:rgba(1, 1, 1, .8);
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.cheese-count-heading {
+  font-size: 20px;
+}
+
+.cheese-count {
+  font-size: 20px;
+  max-width: 5px;
+}
+
+.knife-count-heading {
+  font-size: 14px;
+}
+
+.knife-count {
+  font-size: 14px;
+}
+
+.cart-count-heading {
+  font-size: 14px;
+}
+
+.cart-count {
+  font-size: 14px;
+}
+
+.mouse-count-heading {
+  font-size: 14px;
+}
+
+.mouse-count {
+  font-size: 14px;
+}
+
+.grater-count-heading {
+  font-size: 14px;
+}
+
+.grater-count {
+  font-size: 14px;
+}
+
+.inventory-stats-heading {
+  color: #FFFFFF;
+  margin-bottom: 0px;
 }
 
 /* Moon Animation */
 
 .moon-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: row-reverse;
 }
 
 .moon {
@@ -536,4 +642,8 @@ html {
         padding: 8px 40px;
       }
     }
+  }
+
+  .something {
+    color: white;
   }
