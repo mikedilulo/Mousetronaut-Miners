@@ -8,6 +8,8 @@ let knifeMultiplier = 0;
 let cartMultiplier = 0;
 let mouseMultiplier = 0;
 let graterMultiplier = 0;
+let isAchievementAchieved = false;
+let achievementCount = 0;
 
 const gameUpgrades = {
     knives: {
@@ -29,6 +31,9 @@ const gameUpgrades = {
         purchasePrice: 500,
         autoModifier: 150,
         activated: false
+    },
+    achievements: {
+        isCheeseCollected: false
     }
 }
 
@@ -47,6 +52,8 @@ let mousetronautAutoModifier = gameUpgrades.mousetronauts.autoModifier;
 let graterPurchasePrice = gameUpgrades.graters.purchasePrice;
 let graterActivated = gameUpgrades.graters.activated;
 let graterAutoModifier = gameUpgrades.graters.autoModifier;
+
+let isCheeseAchievement = gameUpgrades.achievements.isCheeseCollected;
 
 const totalCheeseCount = document.querySelector('.cheese-count');
 const clickToGenerateCheeseResource = document.getElementById('cheeseResource');
@@ -69,6 +76,8 @@ const cartPurchasePriceDisplay = document.querySelector('.cart-purchase-price-di
 const mousePurchasePriceDisplay = document.querySelector('.mouse-purchase-price-display');
 const graterPurchasePriceDisplay = document.querySelector('.grater-purchase-price-display');
 let totalCheeseCountCollectedDisplay = document.querySelector('.total-cheese-count-collected');
+const achievementDisplay = document.querySelector('.achievement-display');
+const achievementDisplaySection = document.querySelector('.achievement-display-section');
 
 disableButtonsAtStart();
 disableMaxAutoUpgrades();
@@ -106,14 +115,7 @@ function mineCheese() {
     isCartActivated();
     isMousetronautActivated();
     isGraterActivated();
-    if(totalCheeseCountCollected >= 10000) {
-        console.log('its happened')
-        getColor();
-        getRandomColor();
-        achievementBody.style.backgroundColor = getColor() || getRandomColor();
-        achievementWrapper.classList.remove("animation");
-        setTimeout(() => achievementWrapper.classList.add("animation"), 200);
-    }
+    enableAchievements();
 }
 
 function mousetronautDeactivated() {
@@ -325,6 +327,25 @@ function changeIconsToUpgradeCount() {
 
 
 // Achievements
+
+function enableAchievements() {
+    isAchievementAchieved;
+    console.log('made it here')
+    if(totalCheeseCountCollected >= 100) {
+        isAchievementAchieved = true;
+        achievementCount++;
+        if(achievementCount === 1) {
+            isAchievementAchieved = true;
+            achievementDisplay.disabled = false;
+            achievementDisplay.classList.add('achievement-accomplished')
+            getColor();
+            getRandomColor();
+            achievementBody.style.backgroundColor = getColor() || getRandomColor();
+            achievementWrapper.classList.remove("animation");
+            setTimeout(() => achievementWrapper.classList.add("animation"), 200);
+        }
+    }
+}
 
 var achievementBody = document.querySelector(".achievement-body");
 var achievementWrapper = document.querySelector(".achievement-wrapper");
