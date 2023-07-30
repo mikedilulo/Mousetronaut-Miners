@@ -65,6 +65,8 @@ const graterModifierDisplay = document.querySelector('.grater-plus-cheese-modifi
 const totalCheeseMultiplierDisplay = document.querySelector('.cheese-stat-tcm-count');
 const knifePurchasePriceDisplay = document.querySelector('.knife-purchase-price-display');
 const cartPurchasePriceDisplay = document.querySelector('.cart-purchase-price-display');
+const mousePurchasePriceDisplay = document.querySelector('.mouse-purchase-price-display');
+const graterPurchasePriceDisplay = document.querySelector('.grater-purchase-price-display');
 
 disableButtonsAtStart();
 disableMaxAutoUpgrades();
@@ -176,6 +178,7 @@ function purchaseCheeseMousetronautUpgrade() {
     mousetronautAutoModifier = (mousetronautCount * mousetronautAutoModifier);
     mouseMultiplier = (mousetronautAutoModifier * mousetronautCount);
     totalCheeseMultiplierDisplay.innerHTML = knifeMultiplier + cartMultiplier + mouseMultiplier + graterMultiplier;
+    mousePurchasePriceDisplay.innerHTML = mousetronautPurchasePrice
     return mouseMultiplier;
 }
 
@@ -234,6 +237,7 @@ function isMousetronautActivated() {
     if(mousetronautActivated) {
         cheeseCount = cheeseCount += mousetronautAutoModifier;
         totalCheeseCount.innerHTML = cheeseCount;
+        mousePurchasePriceDisplay.innerHTML = 'MAX PURCHASED';
     }
     return cheeseCount;
 }
@@ -242,6 +246,7 @@ function isGraterActivated() {
     if(graterActivated) {
         cheeseCount = cheeseCount += graterAutoModifier;
         totalCheeseCount.innerHTML = cheeseCount;
+        graterPurchasePriceDisplay.innerHTML = 'MAX PURCHASED';
     }
     return cheeseCount;
 }
