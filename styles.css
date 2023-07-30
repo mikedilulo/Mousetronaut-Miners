@@ -133,9 +133,6 @@ html {
 }
 
 .upgrades-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   border: 1px solid #F5F5F5;
   padding-left: 10px;
   padding-top: 10px;
@@ -143,7 +140,8 @@ html {
   background-color:rgba(1, 1, 1, .8);
   color: #FFFFFF;
   border-radius: 5px;
-  max-width: 25%;
+  max-width: 350px;
+  min-height: 96px;
   margin-left: 100px;
 }
 
