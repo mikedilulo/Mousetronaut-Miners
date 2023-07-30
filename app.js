@@ -64,6 +64,7 @@ const mouseModifierDisplay = document.querySelector('.mouse-plus-cheese-modifier
 const graterModifierDisplay = document.querySelector('.grater-plus-cheese-modifier');
 const totalCheeseMultiplierDisplay = document.querySelector('.cheese-stat-tcm-count');
 const knifePurchasePriceDisplay = document.querySelector('.knife-purchase-price-display');
+const cartPurchasePriceDisplay = document.querySelector('.cart-purchase-price-display');
 
 disableButtonsAtStart();
 disableMaxAutoUpgrades();
@@ -157,6 +158,7 @@ function purchaseCartUpgrade() {
     cartMultiplier = (cartClickModifier * cartCount) + cartClickModifier;
     totalCheeseMultiplierDisplay.innerHTML = knifeMultiplier + cartMultiplier + mouseMultiplier + graterMultiplier;
     changeIconsToUpgradeCount();
+    cartPurchasePriceDisplay.innerHTML = cartPurchasePrice;
     return cartMultiplier;
 }
 
