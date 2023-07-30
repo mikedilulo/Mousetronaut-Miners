@@ -1,4 +1,5 @@
 let cheeseCount = 0;
+let totalCheeseCountCollected = 0;
 let knifeCount = 0;
 let cartCount = 0;
 let mousetronautCount = 0;
@@ -67,6 +68,7 @@ const knifePurchasePriceDisplay = document.querySelector('.knife-purchase-price-
 const cartPurchasePriceDisplay = document.querySelector('.cart-purchase-price-display');
 const mousePurchasePriceDisplay = document.querySelector('.mouse-purchase-price-display');
 const graterPurchasePriceDisplay = document.querySelector('.grater-purchase-price-display');
+let totalCheeseCountCollectedDisplay = document.querySelector('.total-cheese-count-collected');
 
 disableButtonsAtStart();
 disableMaxAutoUpgrades();
@@ -93,6 +95,9 @@ graterUpgradeButton.addEventListener('click', () => {
 })
 
 function mineCheese() {
+    totalCheeseCountCollected++;
+    totalCheeseCountCollected = totalCheeseCountCollected += (knifeClickModifier * knifeCount) + (cartClickModifier * cartCount) + (mousetronautAutoModifier * mousetronautCount) + (graterAutoModifier * graterCount);
+    totalCheeseCountCollectedDisplay.innerHTML = totalCheeseCountCollected;
     cheeseCount++;
     cheeseCount = cheeseCount += (knifeClickModifier * knifeCount) + (cartClickModifier * cartCount) + (mousetronautAutoModifier * mousetronautCount) + (graterAutoModifier * graterCount);
     totalCheeseCount.innerHTML = cheeseCount;
@@ -101,7 +106,7 @@ function mineCheese() {
     isCartActivated();
     isMousetronautActivated();
     isGraterActivated();
-    if(cheeseCount >= 10000) {
+    if(totalCheeseCountCollected >= 10000) {
         console.log('its happened')
         getColor();
         getRandomColor();

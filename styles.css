@@ -65,6 +65,12 @@ html {
   font-size: 14px;
 }
 
+.total-cheese-count-collected {
+  color: yellow;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
 .cheese-stat-cps-count {
   color: #FFFFFF;
   margin-left: 5px;
