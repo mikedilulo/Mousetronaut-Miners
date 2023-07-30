@@ -7,4 +7,4 @@ Things covered in this project:
 2. CSS
 3. Vanilla JS
 
-(Mouse_Miner_Image_for_Readme.png)
+! (Mouse_Miner_Image_for_Readme.png)
